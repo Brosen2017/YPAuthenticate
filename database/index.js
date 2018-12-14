@@ -1,16 +1,18 @@
-const sequelize = require('sequelize');
+const sequelize = require("sequelize");
 
-let connection = new sequelize('userDB', 'root', 'password', {
-    host: 'localhost',
-    dialect: 'mysql'
+let connection = new sequelize("userDB", "postgres", "password", {
+  host: "localhost",
+  dialect: "postgres",
+  port: "5432"
 });
 
-connection.sync({force: false})
-.then(()=>{
-    console.log('successfully connected to sqlDB')
-})
-.catch(err =>{
-    console.log(err)
-})
+connection
+  .authenticate()
+  .then(() => {
+    console.log("connected to the database!");
+  })
+  .catch(err => {
+    console.error(err);
+  });
 
 module.exports = connection;

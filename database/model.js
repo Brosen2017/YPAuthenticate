@@ -13,4 +13,9 @@ const user = connection.define('user',{
      }
 })
 
+connection
+.sync({force: false})
+.then(() => console.log("synced with mysql database"))
+.catch(err => console.error(err));
+
 module.exports = user;

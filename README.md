@@ -7,3 +7,8 @@ using the following main components:
 -React
 -MongoDB
 
+-run npm install
+
+-create UserDB in PostgreSQL, set username = postgres and password = password
+
+-run npm start (should run server and succesful connection and sync messages)

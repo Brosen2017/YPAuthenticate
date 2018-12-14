@@ -2,6 +2,7 @@ const express = require('express');
 const parser = require('body-parser');
 const path = require('path');
 const app = express();
+const db = require('../database/model')
 //const Axios = require('axios');
 
 const PORT = 5000;
