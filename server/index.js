@@ -1,25 +1,23 @@
-const express = require('express');
-const parser = require('body-parser');
-const path = require('path');
+const express = require("express");
+const parser = require("body-parser");
+const path = require("path");
+const cors = require('cors');
+const router = require("./router.js");
 const app = express();
-const db = require('../database/model')
+//const db = require('../database/model')
 //const Axios = require('axios');
 
 const PORT = 5000;
 
-app.use(parser.json())
-app.use(parser.urlencoded({extended: true}))
+app.use(cors()); 
 
-app.use(express.static(path.join(__dirname, '/../client/dist')));
+app.use(parser.json());
+app.use(parser.urlencoded({ extended: true }));
 
-app.get('/user', (req,res)=>{
-    console.log('in get!')
-})
+app.use(express.static(path.join(__dirname, "/../client/dist")));
 
-app.post('/user', (req, res)=>{
-    console.log('in post!')
-})
+app.use("/", router);
 
-app.listen(PORT, function(){
-    console.log(`successfully listening on ${PORT}!`)
-})
+app.listen(PORT, function() {
+  console.log(`successfully listening on ${PORT}!`);
+});
