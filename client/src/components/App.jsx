@@ -5,6 +5,7 @@ import Home from "./Home.jsx";
 import Login from './Login.jsx';
 import Main from './Main.jsx';
 import About from './About.jsx';
+import List from './List.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -48,10 +49,13 @@ class App extends React.Component {
       return <Login data={this.state.db} login={this.handleLogin}/>;
     }
     if(this.state.loggedIn === true){
-      return <Main about={this.handleAbout}/>
+      return <Main about={this.handleAbout} company={this.handleCompanies}/>
     }
     if(this.state.page === "About"){
       return <About/>
+    }
+    if(this.state.page === "Companies"){
+      return <List data={this.state.db}/>
     }
   }
 
@@ -78,7 +82,6 @@ class App extends React.Component {
   }
 
   handleAbout(){
-
     this.setState({
       page:"About",
       loggedIn: false
@@ -87,7 +90,11 @@ class App extends React.Component {
   }
 
   handleCompanies(){
-
+    this.setState({
+      page:"Companies",
+      loggedIn: false
+    })
+    this.checkPage();
   }
 
   render() {

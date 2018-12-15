@@ -6,7 +6,7 @@ let Main = props =>(
 
     <button onClick={()=>{props.about()}}>About Me</button>
     <button>Change Existing Info</button>
-    <button>Business</button>
+    <button onClick={()=>{props.company()}}>Business</button>
   </div>
 )
 
