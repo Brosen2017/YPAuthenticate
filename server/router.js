@@ -6,4 +6,8 @@ router
   .get(controller.get)
   .post(controller.post);
 
+  router
+  .route("/check")
+  .post(controller.check)
+
 module.exports = router;
