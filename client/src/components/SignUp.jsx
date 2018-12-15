@@ -1,6 +1,22 @@
 import React from "react";
 
-let SignUp = props => (
+class SignUp extends React.Component{
+  constructor(props){
+    super(props)
+  this.state={
+    firstname: '',
+    lastname: '',
+    email: '',
+    password:'',
+    zipcode:''
+  }
+
+  }
+
+  
+
+render(){
+  return (
   <form>
     <div>
       <h1>Sign Up</h1>
@@ -69,5 +85,8 @@ let SignUp = props => (
     </div>
   </form>
 );
+}
+}
+
 
 export default SignUp;
