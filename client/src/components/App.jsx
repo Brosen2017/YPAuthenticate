@@ -4,6 +4,7 @@ import SignUp from "./SignUp.jsx";
 import Home from "./Home.jsx";
 import Login from './Login.jsx';
 import Main from './Main.jsx';
+import About from './About.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -17,6 +18,8 @@ class App extends React.Component {
     this.newUser = this.newUser.bind(this);
     this.existingUser = this.existingUser.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
+    this.handleAbout = this.handleAbout.bind(this);
+    this.handleCompanies = this.handleCompanies.bind(this);
   }
 
   componentDidMount() {
@@ -24,7 +27,7 @@ class App extends React.Component {
     axios
       .get("/user")
       .then(response => {
-        console.log("this is the response", response.data);
+        //console.log("this is the response", response.data);
         this.setState({
           db: response.data
         });
@@ -32,7 +35,6 @@ class App extends React.Component {
       .catch(err => {
         console.log(err);
       });
-      console.log('this is the state', this.state)
   }
 
   checkPage() {
@@ -46,7 +48,10 @@ class App extends React.Component {
       return <Login data={this.state.db} login={this.handleLogin}/>;
     }
     if(this.state.loggedIn === true){
-      return <Main />
+      return <Main about={this.handleAbout}/>
+    }
+    if(this.state.page === "About"){
+      return <About/>
     }
   }
 
@@ -70,6 +75,19 @@ class App extends React.Component {
       loggedIn: true
     })
     this.checkPage();
+  }
+
+  handleAbout(){
+
+    this.setState({
+      page:"About",
+      loggedIn: false
+    })
+    this.checkPage();
+  }
+
+  handleCompanies(){
+
   }
 
   render() {

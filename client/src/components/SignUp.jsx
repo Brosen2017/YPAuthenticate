@@ -117,18 +117,6 @@ render(){
       </label>
       <input type="text" placeholder="Enter Zipcode" name="zipcode" required onChange={this.handleZip}/>
 
-      {/* <label>
-        <input
-          type="checkbox"
-          checked="checked"
-          name="remember"
-          style="margin-bottom:15px"
-        >
-          {" "}
-          Remember me
-        </input>
-      </label> */}
-
       <p>
         By creating an account you agree to our{" "}
         <a href="#" >
