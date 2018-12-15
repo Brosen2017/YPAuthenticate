@@ -8,14 +8,18 @@ class About extends React.Component {
     this.state = {
       user: this.props.user,
       company: "",
+      website:"",
+      photo:"",
       address: "",
       city: "",
-      state: ""
+      state: "",
     };
     this.handleCompany = this.handleCompany.bind(this);
     this.handleAddress = this.handleAddress.bind(this);
     this.handleCity= this.handleCity.bind(this);
     this.handleState = this.handleState.bind(this);
+    this.handleWebsite = this.handleWebsite.bind(this);
+    this.handlePhoto = this.handlePhoto.bind(this);
   }
 
   handleState(e){
@@ -42,6 +46,18 @@ class About extends React.Component {
     })
   }
 
+  handleWebsite(e){
+    this.setState({
+      website: e.target.value
+    })
+  }
+
+  handlePhoto(e){
+    this.setState({
+      photo: e.target.value
+    })
+  }
+
   handleSubmit(){
     console.log('About state', this.state)
     let data = this.state
@@ -57,11 +73,17 @@ class About extends React.Component {
     return (
       <form>
         <div>
-          <h1>Tell us a bit more about yourself</h1>
+          <h1>Tell us a little more about yourself</h1>
           <hr />
 
           <b>Company Name</b>
           <input type="text" placeholder="Company Name" required onChange={this.handleCompany}/>
+
+          <b>Company Website</b>
+          <input type="text" placeholder="Company Website" required onChange={this.handleWebsite}/>
+
+          <b>Photo</b>
+          <input type="text" placeholder="Insert imageUrl here" required onChange={this.handlePhoto}/>
 
           <b>Address</b>
           <input type="text" placeholder="Address" required onChange={this.handleAddress}/>

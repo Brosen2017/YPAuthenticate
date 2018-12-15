@@ -47,7 +47,9 @@ exports.update=(req,res)=>{
     {company: req.body.company,
     address: req.body.address,
     city: req.body.city,
-    state: req.body.state},
+    state: req.body.state,
+    website: req.body.website,
+    photo: req.body.photo},
     {where:{email: req.body.user.email}}
   )
   .then((data)=>{
