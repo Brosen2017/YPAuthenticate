@@ -37,7 +37,7 @@ class Login extends React.Component{
         alert('incorrect username or password, please try again')
       }
       if(response.data[0].email === email && response.data[0].password === password){
-        this.props.login();
+        this.props.login(response.data[0]);
       }
     })
     .catch(err => {

@@ -39,3 +39,19 @@ exports.check=(req,res)=>{
   })
   .catch(err => console.log(err))
 }
+
+exports.update=(req,res)=>{
+  console.log('in update', req.body)
+
+  db.update(
+    {company: req.body.company,
+    address: req.body.address,
+    city: req.body.city,
+    state: req.body.state},
+    {where:{email: req.body.user.email}}
+  )
+  .then((data)=>{
+    res.status(200).send(data)
+  })
+  .catch(err=>console.log(err))
+}

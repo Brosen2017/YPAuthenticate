@@ -13,7 +13,8 @@ class App extends React.Component {
     this.state = {
       page: "home",
       db: [],
-      loggedIn: false
+      loggedIn: false,
+      currentUser: {}
     };
     this.checkPage = this.checkPage.bind(this);
     this.newUser = this.newUser.bind(this);
@@ -21,6 +22,7 @@ class App extends React.Component {
     this.handleLogin = this.handleLogin.bind(this);
     this.handleAbout = this.handleAbout.bind(this);
     this.handleCompanies = this.handleCompanies.bind(this);
+    this.handleHomePage = this.handleHomePage.bind(this);
   }
 
   componentDidMount() {
@@ -28,7 +30,7 @@ class App extends React.Component {
     axios
       .get("/user")
       .then(response => {
-        //console.log("this is the response", response.data);
+        console.log("this is the response", response.data);
         this.setState({
           db: response.data
         });
@@ -49,13 +51,13 @@ class App extends React.Component {
       return <Login data={this.state.db} login={this.handleLogin}/>;
     }
     if(this.state.loggedIn === true){
-      return <Main about={this.handleAbout} company={this.handleCompanies}/>
+      return <Main about={this.handleAbout} company={this.handleCompanies} user={this.state.currentUser}/>
     }
     if(this.state.page === "About"){
-      return <About/>
+      return <About home={this.handleHomePage} user={this.state.currentUser}/>
     }
     if(this.state.page === "Companies"){
-      return <List data={this.state.db}/>
+      return <List data={this.state.db} home={this.handleHomePage}/>
     }
   }
 
@@ -73,10 +75,11 @@ class App extends React.Component {
     this.checkPage();
   }
 
-  handleLogin(){
+  handleLogin(user){
     this.setState({
       page:"Main",
-      loggedIn: true
+      loggedIn: true,
+      currentUser: user
     })
     this.checkPage();
   }
@@ -93,6 +96,14 @@ class App extends React.Component {
     this.setState({
       page:"Companies",
       loggedIn: false
+    })
+    this.checkPage();
+  }
+
+  handleHomePage(){
+    this.setState({
+      page:"Main",
+      loggedIn: true
     })
     this.checkPage();
   }

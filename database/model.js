@@ -26,12 +26,36 @@ const user = connection.define("user", {
   zipcode: {
     type: sequelize.INTEGER,
     allowNull: false
+  },
+  address: {
+    type: sequelize.STRING,
+    allowNull: true
+  },
+  city: {
+    type: sequelize.STRING,
+    allowNull: true
+  },
+  state: {
+    type: sequelize.STRING,
+    allowNull: true
+  },
+  company: {
+    type: sequelize.STRING,
+    allowNull: true
+  },
+  website: {
+    type: sequelize.STRING,
+    allowNull: true
+  },
+  photo: {
+    type: sequelize.STRING,
+    allowNull: true
   }
 });
 
 connection
   .sync()
-  .then(() => console.log("synced with mysql database"))
+  .then(() => console.log("synced with PSQL database"))
   .catch(err => console.error(err));
 
 module.exports = user;

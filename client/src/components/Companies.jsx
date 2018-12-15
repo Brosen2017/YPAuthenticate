@@ -3,7 +3,21 @@ import React from 'react';
 let Companies = props =>(
   <ul>
     <li>
-      {props.company.firstname}
+      <b>Name: </b>
+      {props.company.firstname} {props.company.lastname}
+      <div>
+        <p>
+        <b>Company: </b>
+        {props.company.company}
+        </p>
+        
+        <b>Company Website: </b>
+        {props.company.website}
+
+        <div>
+          <img src={props.company.photo}></img>
+        </div>
+      </div>
     </li>
   </ul>
 )

@@ -1,7 +1,7 @@
 import React from 'react';
 
 let StateList = props =>(
-  <select>
+  <select onChange={props.handle}>
 	<option value="AL">Alabama</option>
 	<option value="AK">Alaska</option>
 	<option value="AZ">Arizona</option>
