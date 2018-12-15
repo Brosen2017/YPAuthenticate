@@ -77,19 +77,19 @@ class About extends React.Component {
           <hr />
 
           <b>Company Name</b>
-          <input type="text" placeholder="Company Name" required onChange={this.handleCompany}/>
+          <input type="text" placeholder="Company Name" onChange={this.handleCompany}/>
 
           <b>Company Website</b>
-          <input type="text" placeholder="Company Website" required onChange={this.handleWebsite}/>
+          <input type="text" placeholder="Company Website"  onChange={this.handleWebsite}/>
 
           <b>Photo</b>
-          <input type="text" placeholder="Insert imageUrl here" required onChange={this.handlePhoto}/>
+          <input type="text" placeholder="Insert imageUrl here" onChange={this.handlePhoto}/>
 
           <b>Address</b>
-          <input type="text" placeholder="Address" required onChange={this.handleAddress}/>
+          <input type="text" placeholder="Address" onChange={this.handleAddress}/>
 
           <b>City</b>
-          <input type="text" placeholder="City" required onChange={this.handleCity}/>
+          <input type="text" placeholder="City" onChange={this.handleCity}/>
 
           <b>State</b>
           <StateList handle={this.handleState}/>

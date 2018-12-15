@@ -15,7 +15,8 @@ class App extends React.Component {
       page: "Home",
       db: [],
       loggedIn: false,
-      currentUser: {}
+      currentUser: {},
+      favorite:[]
     };
     this.checkPage = this.checkPage.bind(this);
     this.newUser = this.newUser.bind(this);
@@ -26,6 +27,7 @@ class App extends React.Component {
     this.handleCompanies = this.handleCompanies.bind(this);
     this.handleHomePage = this.handleHomePage.bind(this);
     this.handleProfile = this.handleProfile.bind(this);
+    this.handleFavorite = this.handleFavorite.bind(this);
   }
 
   componentDidMount() {
@@ -53,8 +55,8 @@ class App extends React.Component {
     if (this.state.page === "Login") {
       return <Login data={this.state.db} login={this.handleLogin}/>;
     }
-    if(this.state.loggedIn === true){
-      return <Main about={this.handleAbout} company={this.handleCompanies} profile={this.handleProfile} logout={this.handleLogout} user={this.state.currentUser}/>
+    if(this.state.page === "Main"){
+      return <Main state={this.state} about={this.handleAbout} company={this.handleCompanies} profile={this.handleProfile} logout={this.handleLogout} user={this.state.currentUser}/>
     }
     if(this.state.page === "Profile"){
       return <Profile home={this.handleHomePage} user={this.state.currentUser}/>
@@ -63,7 +65,7 @@ class App extends React.Component {
       return <About home={this.handleHomePage} user={this.state.currentUser}/>
     }
     if(this.state.page === "Companies"){
-      return <List data={this.state.db} home={this.handleHomePage}/>
+      return <List data={this.state.db} home={this.handleHomePage} fav={this.handleFavorite}/>
     }
   }
 
@@ -93,14 +95,14 @@ class App extends React.Component {
   handleLogout(){
     this.setState({
       page: "Home",
-      loggedIn: false,
+      // loggedIn: false,
     })
   }
 
   handleAbout(){
     this.setState({
       page:"About",
-      loggedIn: false
+      // loggedIn: false
     })
     this.checkPage();
   }
@@ -108,7 +110,7 @@ class App extends React.Component {
   handleCompanies(){
     this.setState({
       page:"Companies",
-      loggedIn: false
+      // loggedIn: false
     })
     this.checkPage();
   }
@@ -116,7 +118,7 @@ class App extends React.Component {
   handleHomePage(){
     this.setState({
       page:"Main",
-      loggedIn: true
+      // loggedIn: true
     })
     this.checkPage();
   }
@@ -124,9 +126,17 @@ class App extends React.Component {
   handleProfile(){
     this.setState({
       page:"Profile",
-      loggedIn: false
+      // loggedIn: false
     })
     this.checkPage();
+  }
+
+  handleFavorite(company){
+    // console.log('favorite', company)
+    // this.setState({
+    //   favorite: this.state.favorite.concat(company)
+    // })
+    // console.log('favorite', this.state)
   }
 
   render() {

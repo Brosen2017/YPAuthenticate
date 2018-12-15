@@ -6,7 +6,7 @@ let List = props => (
   <h1>Company List</h1>
   <button onClick={()=>{props.home()}}>Home</button>
   <p>These are the current companies we have available in our database!</p>
-  {props.data.map((company, index)=><Companies company={company} key={index}/>)}
+  {props.data.map((company, index)=><Companies company={company} key={index} fav={props.fav}/>)}
   </div>
 )
 

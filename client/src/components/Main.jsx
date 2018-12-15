@@ -2,7 +2,7 @@ import React from 'react';
 
 let Main = props =>(
   <div>
-    {console.log('in main', props.user)}
+    {console.log('in main', props.state)}
     <h1>Welcome to the main page!</h1>
 
     <button onClick={()=>{props.about()}}>Additional Info</button>

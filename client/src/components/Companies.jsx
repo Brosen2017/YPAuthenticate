@@ -14,6 +14,8 @@ let Companies = props =>(
         <b>Company Website: </b>
         {props.company.website}
 
+        <button onClick={()=>props.fav(props.company)}>Favorite</button>
+
         <div>
           <img src={props.company.photo}></img>
         </div>
