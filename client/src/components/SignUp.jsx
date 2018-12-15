@@ -138,7 +138,7 @@ render(){
       </p>
 
       <div>
-        <button type="button" onClick={this.handleSubmit}>Cancel</button>
+        <button type="button" >Cancel</button>
         <button type="submit" onClick={this.handleSubmit}>Sign Up</button>
       </div>
     </div>
