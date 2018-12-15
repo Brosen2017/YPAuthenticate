@@ -3,17 +3,20 @@ import axios from "axios";
 import SignUp from "./SignUp.jsx";
 import Home from "./Home.jsx";
 import Login from './Login.jsx';
+import Main from './Main.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       page: "home",
-      existing: []
+      db: [],
+      loggedIn: false
     };
     this.checkPage = this.checkPage.bind(this);
     this.newUser = this.newUser.bind(this);
     this.existingUser = this.existingUser.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
   }
 
   componentDidMount() {
@@ -23,16 +26,16 @@ class App extends React.Component {
       .then(response => {
         console.log("this is the response", response.data);
         this.setState({
-          existing: response.data
+          db: response.data
         });
       })
       .catch(err => {
         console.log(err);
       });
+      console.log('this is the state', this.state)
   }
 
   checkPage() {
-    // console.log(this.state.page);
     if (this.state.page === "home") {
       return <Home new={this.newUser} old={this.existingUser}/>;
     }
@@ -40,7 +43,10 @@ class App extends React.Component {
       return <SignUp />;
     }
     if (this.state.page === "Login") {
-      return <Login />;
+      return <Login data={this.state.db} login={this.handleLogin}/>;
+    }
+    if(this.state.loggedIn === true){
+      return <Main />
     }
   }
 
@@ -49,13 +55,20 @@ class App extends React.Component {
       page: "Signup"
     });
     this.checkPage();
-    console.log('ive been clicked', this.state.page)
   }
 
   existingUser() {
     this.setState({
       page: "Login"
     });
+    this.checkPage();
+  }
+
+  handleLogin(){
+    this.setState({
+      page:"Main",
+      loggedIn: true
+    })
     this.checkPage();
   }
 

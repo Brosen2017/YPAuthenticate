@@ -23,5 +23,19 @@ exports.post = (req, res) => {
       .then(data => {
         res.status(201).send(data);
       })
-      .catch(err => console.error(err));
+      .catch(err => console.log(err));
 };
+
+exports.check=(req,res)=>{
+  let query = req.body
+  console.log('in check get!', req.body.email)
+  db.findAll({
+    where:{email: query.email, 
+    password: query.password}
+  })
+  .then(data =>{
+    console.log(data)
+    res.status(201).send(data)
+  })
+  .catch(err => console.log(err))
+}
