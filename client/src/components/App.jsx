@@ -6,12 +6,13 @@ import Login from './Login.jsx';
 import Main from './Main.jsx';
 import About from './About.jsx';
 import List from './List.jsx';
+import Profile from './Profile.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: "home",
+      page: "Home",
       db: [],
       loggedIn: false,
       currentUser: {}
@@ -20,9 +21,11 @@ class App extends React.Component {
     this.newUser = this.newUser.bind(this);
     this.existingUser = this.existingUser.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
     this.handleAbout = this.handleAbout.bind(this);
     this.handleCompanies = this.handleCompanies.bind(this);
     this.handleHomePage = this.handleHomePage.bind(this);
+    this.handleProfile = this.handleProfile.bind(this);
   }
 
   componentDidMount() {
@@ -41,17 +44,20 @@ class App extends React.Component {
   }
 
   checkPage() {
-    if (this.state.page === "home") {
+    if (this.state.page === "Home") {
       return <Home new={this.newUser} old={this.existingUser}/>;
     }
     if (this.state.page === "Signup") {
-      return <SignUp />;
+      return <SignUp logout={this.handleLogout}/>;
     }
     if (this.state.page === "Login") {
       return <Login data={this.state.db} login={this.handleLogin}/>;
     }
     if(this.state.loggedIn === true){
-      return <Main about={this.handleAbout} company={this.handleCompanies} user={this.state.currentUser}/>
+      return <Main about={this.handleAbout} company={this.handleCompanies} profile={this.handleProfile} logout={this.handleLogout} user={this.state.currentUser}/>
+    }
+    if(this.state.page === "Profile"){
+      return <Profile home={this.handleHomePage} user={this.state.currentUser}/>
     }
     if(this.state.page === "About"){
       return <About home={this.handleHomePage} user={this.state.currentUser}/>
@@ -84,6 +90,13 @@ class App extends React.Component {
     this.checkPage();
   }
 
+  handleLogout(){
+    this.setState({
+      page: "Home",
+      loggedIn: false,
+    })
+  }
+
   handleAbout(){
     this.setState({
       page:"About",
@@ -104,6 +117,14 @@ class App extends React.Component {
     this.setState({
       page:"Main",
       loggedIn: true
+    })
+    this.checkPage();
+  }
+
+  handleProfile(){
+    this.setState({
+      page:"Profile",
+      loggedIn: false
     })
     this.checkPage();
   }
