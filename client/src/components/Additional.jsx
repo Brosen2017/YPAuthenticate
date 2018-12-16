@@ -2,7 +2,7 @@ import React from "react";
 import axios from 'axios';
 import StateList from "./StateList.jsx";
 
-class About extends React.Component {
+class Additional extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -62,9 +62,16 @@ class About extends React.Component {
     console.log('About state', this.state)
     let data = this.state
     axios
-    .patch('update', data)
+    .patch('/update', data)
     .then((res)=>{
-      console.log(res)
+      console.log('in additional', res)
+      axios
+      .get('/check' , {params:{data}})
+      .then((response)=>{
+        console.log('in additional', response.data[0])
+        this.props.login(response.data[0])
+      })
+      .catch(err=>console.log(err))
     })
     .catch(err=>console.log(err))
   }
@@ -95,7 +102,7 @@ class About extends React.Component {
           <StateList handle={this.handleState}/>
         </div>
         <div>
-          <button onClick={()=>{this.handleSubmit()}}>Submit</button>
+          <button type="button" onClick={()=>{this.handleSubmit()}}>Submit</button>
           <button 
             onClick={() => {
               this.props.home();
@@ -109,4 +116,4 @@ class About extends React.Component {
   }
 }
 
-export default About;
+export default Additional;

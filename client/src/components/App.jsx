@@ -2,22 +2,28 @@ import React from "react";
 import axios from "axios";
 import SignUp from "./SignUp.jsx";
 import Home from "./Home.jsx";
-import Login from './Login.jsx';
-import Main from './Main.jsx';
-import About from './About.jsx';
-import List from './List.jsx';
-import Profile from './Profile.jsx';
-import cookie from 'js-cookie';
+import Login from "./Login.jsx";
+import Main from "./Main.jsx";
+import Additional from "./Additional.jsx";
+import List from "./List.jsx";
+import Profile from "./Profile.jsx";
+import cookie from "js-cookie";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: cookie.get('pageCheck') || "Home",
+      page: cookie.get("pageCheck") || "Home",
       db: [],
-      loggedIn: cookie.get('logCheck') || false,
-      currentUser: {},
-      favorite:[]
+      loggedIn: cookie.get("logCheck") || false,
+      currentUser: (() => {
+        if (cookie.get("user")) {
+          return JSON.parse(cookie.get("user"));
+        } else {
+          return cookie.get("user");
+        }
+      })(),
+      fav: []
     };
     this.checkPage = this.checkPage.bind(this);
     this.newUser = this.newUser.bind(this);
@@ -33,6 +39,7 @@ class App extends React.Component {
 
   componentDidMount() {
     //console.log('cookie', JSON.parse(cookie.get('user')))
+    //this.handleLogin()
     this.checkPage();
     axios
       .get("/user")
@@ -48,29 +55,51 @@ class App extends React.Component {
   }
 
   checkPage() {
-    if(cookie.get('pageCheck') === undefined){
-      cookie.set('pageCheck', "Home")
+    if (cookie.get("pageCheck") === undefined) {
+      cookie.set("pageCheck", "Home");
+    }
+    if (cookie.get("logCheck") === false) {
+      cookie.set("user", {});
+    }
+    if (cookie.get("logCheck") === true) {
+      this.handleLogin();
     }
     if (this.state.page === "Home") {
-      return <Home new={this.newUser} old={this.existingUser}/>;
+      return <Home new={this.newUser} old={this.existingUser} />;
     }
     if (this.state.page === "Signup") {
-      return <SignUp logout={this.handleLogout}/>;
+      return <SignUp logout={this.handleLogout} />;
     }
     if (this.state.page === "Login") {
-      return <Login data={this.state.db} login={this.handleLogin}/>;
+      return <Login data={this.state.db} login={this.handleLogin} />;
     }
-    if(this.state.page === "Main"){
-      return <Main state={this.state} about={this.handleAbout} company={this.handleCompanies} profile={this.handleProfile} logout={this.handleLogout}/>
+    if (this.state.page === "Main") {
+      return (
+        <Main
+          state={this.state}
+          about={this.handleAbout}
+          company={this.handleCompanies}
+          profile={this.handleProfile}
+          logout={this.handleLogout}
+        />
+      );
     }
-    if(this.state.page === "Profile"){
-      return <Profile home={this.handleHomePage} user={this.state.currentUser}/>
+    if (this.state.page === "Profile") {
+      return (
+        <Profile home={this.handleHomePage} user={this.state.currentUser} />
+      );
     }
-    if(this.state.page === "About"){
-      return <About home={this.handleHomePage} user={this.state.currentUser}/>
+    if (this.state.page === "About") {
+      return <Additional home={this.handleHomePage} user={this.state.currentUser} login={this.handleLogin}/>;
     }
-    if(this.state.page === "Companies"){
-      return <List data={this.state.db} home={this.handleHomePage} fav={this.handleFavorite}/>
+    if (this.state.page === "Companies") {
+      return (
+        <List
+          data={this.state.db}
+          home={this.handleHomePage}
+          fav={this.handleFavorite}
+        />
+      );
     }
   }
 
@@ -88,61 +117,71 @@ class App extends React.Component {
     this.checkPage();
   }
 
-  handleLogin(user){
+  handleLogin(user) {
+    if (!user) {
+      console.log("is this working?", this.state.currentUser);
+      // axios
+      // .get("/update")
+      // .then((res)=>{
+      //   console.log(res.data)
+      // })
+      // .catch(err=>console.log(err))
+
+    }
     this.setState({
-      page:"Main",
+      page: "Main",
       loggedIn: true,
       currentUser: user
-    })
-    cookie.set('pageCheck', this.state.page);
-    cookie.set('user', this.state.currentUser);
-    cookie.set('logCheck', this.state.loggedIn)
+    });
+    cookie.set("pageCheck", this.state.page);
+    cookie.set("user", this.state.currentUser);
+    cookie.set("logCheck", this.state.loggedIn);
     this.checkPage();
   }
 
-  handleLogout(){
+  handleLogout() {
     this.setState({
       page: "Home",
-      loggedIn: false,
-    })
-    cookie.remove('pageCheck');
-    cookie.remove('user');
-    cookie.remove('logCheck');
+      loggedIn: false
+    });
+    cookie.remove("pageCheck");
+    cookie.remove("user");
+    cookie.remove("logCheck");
   }
 
-  handleAbout(){
+  handleAbout() {
     this.setState({
-      page:"About",
+      page: "About"
       // loggedIn: false
-    })
+    });
     this.checkPage();
   }
 
-  handleCompanies(){
+  handleCompanies() {
     this.setState({
-      page:"Companies",
+      page: "Companies"
       // loggedIn: false
-    })
+    });
     this.checkPage();
   }
 
-  handleHomePage(){
+  handleHomePage() {
     this.setState({
-      page:"Main",
+      page: "Main"
       // loggedIn: true
-    })
+    });
     this.checkPage();
   }
 
-  handleProfile(){
+  handleProfile() {
     this.setState({
-      page:"Profile",
+      page: "Profile"
       // loggedIn: false
-    })
+    });
     this.checkPage();
   }
 
-  handleFavorite(company){
+  handleFavorite(company) {
     // console.log('favorite', company)
     // this.setState({
     //   favorite: this.state.favorite.concat(company)
@@ -151,11 +190,7 @@ class App extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        {this.checkPage()}
-      </div>
-    );
+    return <div>{this.checkPage()}</div>;
   }
 }
 
