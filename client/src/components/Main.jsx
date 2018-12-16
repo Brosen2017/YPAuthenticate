@@ -7,7 +7,7 @@ let Main = props =>(
 
     <button onClick={()=>{props.about()}}>Additional Info</button>
     <button onClick={()=>{props.profile()}}>My Profile</button>
-    <button onClick={()=>{props.company()}}>Business</button>
+    <button onClick={()=>{props.company()}}>Companies</button>
     <button onClick={()=>props.logout()}>Log out</button>
   </div>
 )

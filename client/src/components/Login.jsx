@@ -33,7 +33,6 @@ class Login extends React.Component{
     axios
     .post("/check", data)
     .then(response => {
-      console.log(response.data[0])
       if(response.data.length === 0){
         alert('incorrect username or password, please try again')
       }
