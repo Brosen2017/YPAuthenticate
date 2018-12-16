@@ -34,11 +34,14 @@ class Login extends React.Component{
     .post("/check", data)
     .then(response => {
       if(response.data.length === 0){
-        alert('incorrect username or password, please try again')
+        return alert('incorrect username or password, please try again')
       }
       if(response.data[0].email === email){
         this.props.login(response.data[0]);
       }
+      // if(!response){
+      // return alert('email or password not found, please sign up to become a member')
+      // }
     })
     .catch(err => {
       console.log(err);
@@ -64,6 +67,7 @@ render(){
       <input type="password" placeholder="Enter Password" name="password" required onChange={this.handlePWD}/>
       <div>
       <button type="button" onClick={()=>{this.handleSubmit()}}>Sign in</button>
+      <button onClick={()=>this.props.logout()}>Cancel</button>
       </div>
   </form>
   )

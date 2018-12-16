@@ -1,6 +1,7 @@
 import React from "react";
 import axios from 'axios';
 import StateList from "./StateList.jsx";
+import styles from '../styles/Additional.css';
 
 class Additional extends React.Component {
   constructor(props) {
@@ -83,22 +84,22 @@ class Additional extends React.Component {
           <h1>Tell us a little more about yourself</h1>
           <hr />
 
-          <b>Company Name</b>
-          <input type="text" placeholder="Company Name" onChange={this.handleCompany}/>
+          <b>Company Name: </b>
+          <input type="text" placeholder="Company Name" onChange={this.handleCompany} className={styles.input}/>
 
-          <b>Company Website</b>
-          <input type="text" placeholder="Company Website"  onChange={this.handleWebsite}/>
+          <b>Company Website: </b>
+          <input type="text" placeholder="Company Website"  onChange={this.handleWebsite} className={styles.input}/>
 
-          <b>Photo</b>
-          <input type="text" placeholder="Insert imageUrl here" onChange={this.handlePhoto}/>
+          <b>Photo: </b>
+          <input type="text" placeholder="Insert imageUrl here" onChange={this.handlePhoto} className={styles.input}/>
 
-          <b>Address</b>
-          <input type="text" placeholder="Address" onChange={this.handleAddress}/>
+          <b>Address: </b>
+          <input type="text" placeholder="Address" onChange={this.handleAddress} className={styles.input}/>
 
-          <b>City</b>
-          <input type="text" placeholder="City" onChange={this.handleCity}/>
+          <b>City: </b>
+          <input type="text" placeholder="City" onChange={this.handleCity} className={styles.input}/>
 
-          <b>State</b>
+          <b>State: </b>
           <StateList handle={this.handleState}/>
         </div>
         <div>

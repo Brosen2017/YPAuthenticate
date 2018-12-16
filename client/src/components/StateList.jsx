@@ -1,7 +1,8 @@
 import React from 'react';
+import styles from '../styles/StateList.css';
 
 let StateList = props =>(
-  <select onChange={props.handle}>
+  <select onChange={props.handle} className={styles.dropdown}>
 	<option value="AL">Alabama</option>
 	<option value="AK">Alaska</option>
 	<option value="AZ">Arizona</option>

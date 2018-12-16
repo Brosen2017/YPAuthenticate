@@ -71,7 +71,7 @@ class App extends React.Component {
       return <SignUp logout={this.handleLogout} />;
     }
     if (this.state.page === "Login") {
-      return <Login data={this.state.db} login={this.handleLogin} />;
+      return <Login data={this.state.db} login={this.handleLogin} logout={this.handleLogout}/>;
     }
     if (this.state.page === "Main") {
       return (
