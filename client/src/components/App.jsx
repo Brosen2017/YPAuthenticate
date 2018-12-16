@@ -32,11 +32,6 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    if(cookie.get('logCheck') === true){
-      this.setState({
-        page: "Main"
-      })
-    }
     this.checkPage();
     axios
       .get("/user")
@@ -66,7 +61,7 @@ class App extends React.Component {
       return <Login data={this.state.db} login={this.handleLogin}/>;
     }
     if(this.state.page === "Main"){
-      return <Main state={this.state} about={this.handleAbout} company={this.handleCompanies} profile={this.handleProfile} logout={this.handleLogout} user={this.state.currentUser}/>
+      return <Main state={this.state} about={this.handleAbout} company={this.handleCompanies} profile={this.handleProfile} logout={this.handleLogout}/>
     }
     if(this.state.page === "Profile"){
       return <Profile home={this.handleHomePage} user={this.state.currentUser}/>
@@ -100,6 +95,7 @@ class App extends React.Component {
       currentUser: user
     })
     cookie.set('logCheck', this.state.page);
+    cookie.set('user', this.state.currentUser);
     this.checkPage();
   }
 
@@ -109,6 +105,7 @@ class App extends React.Component {
       loggedIn: false,
     })
     cookie.remove('logCheck');
+    cookie.remove('user');
   }
 
   handleAbout(){
