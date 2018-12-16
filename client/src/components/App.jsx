@@ -7,12 +7,13 @@ import Main from './Main.jsx';
 import About from './About.jsx';
 import List from './List.jsx';
 import Profile from './Profile.jsx';
+import cookie from 'js-cookie';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: "Home",
+      page: cookie.get('logCheck'),
       db: [],
       loggedIn: false,
       currentUser: {},
@@ -31,6 +32,11 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    if(cookie.get('logCheck') === true){
+      this.setState({
+        page: "Main"
+      })
+    }
     this.checkPage();
     axios
       .get("/user")
@@ -46,6 +52,10 @@ class App extends React.Component {
   }
 
   checkPage() {
+    if(cookie.get('logCheck') === undefined){
+      cookie.set('logCheck', "Home")
+    }
+
     if (this.state.page === "Home") {
       return <Home new={this.newUser} old={this.existingUser}/>;
     }
@@ -89,14 +99,16 @@ class App extends React.Component {
       loggedIn: true,
       currentUser: user
     })
+    cookie.set('logCheck', this.state.page);
     this.checkPage();
   }
 
   handleLogout(){
     this.setState({
       page: "Home",
-      // loggedIn: false,
+      loggedIn: false,
     })
+    cookie.remove('logCheck');
   }
 
   handleAbout(){
