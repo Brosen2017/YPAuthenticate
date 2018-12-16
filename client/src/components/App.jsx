@@ -16,7 +16,11 @@ class App extends React.Component {
       page: cookie.get('pageCheck') || "Home",
       db: [],
       loggedIn: cookie.get('logCheck') || false,
-      currentUser: {},
+      currentUser: (()=>{ if(cookie.get('user')){
+        return JSON.parse(cookie.get('user'))
+      }else {
+        return cookie.get('user')
+      }})(),
       favorite:[]
     };
     this.checkPage = this.checkPage.bind(this);
@@ -30,6 +34,8 @@ class App extends React.Component {
     this.handleProfile = this.handleProfile.bind(this);
     this.handleFavorite = this.handleFavorite.bind(this);
   }
+
+
 
   componentDidMount() {
     //console.log('cookie', JSON.parse(cookie.get('user')))
@@ -50,6 +56,12 @@ class App extends React.Component {
   checkPage() {
     if(cookie.get('pageCheck') === undefined){
       cookie.set('pageCheck', "Home")
+    }
+    if(cookie.get('logCheck') === false){
+      cookie.set('user', {})
+    }
+    if(cookie.get('logCheck') === true){
+      this.handleLogin();
     }
     if (this.state.page === "Home") {
       return <Home new={this.newUser} old={this.existingUser}/>;
