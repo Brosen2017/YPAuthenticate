@@ -28,41 +28,40 @@ exports.post = (req, res) => {
     })
 };
 
-exports.check=(req,res)=>{
-  let query = req.body
-
-  db.findAll({
-    where:{email: query.email, 
-    password: query.password}
-  })
-  .then(data =>{
-    console.log(data)
-    res.status(201).send(data)
-  })
-  .catch(err => console.log(err))
-
-}
-
 // exports.check=(req,res)=>{
 //   let query = req.body
 
 //   db.findAll({
-//     where:{email: query.email}
+//     where:{email: query.email, 
+//     password: query.password}
 //   })
 //   .then(data =>{
-//     console.log(data[0].password)
-//     bcrypt.compare(query.password, data[0].password, function(err, check) {
-//       console.log('in hash', check)
-//       if(check === true){
-//         res.status(200).send(data)
-//       } else {
-//         res.status(200).send([])
-//       }
-//     })
-//     .catch(err=>console.log(err))
+//     console.log(data)
+//     res.status(201).send(data)
 //   })
 //   .catch(err => console.log(err))
 // }
+
+exports.check=(req,res)=>{
+  let query = req.body
+
+  db.findAll({
+    where:{email: query.email}
+  })
+  .then(data =>{
+    console.log(data[0].password)
+    bcrypt.compare(query.password, data[0].password, function(err, check) {
+      console.log('in hash', check)
+      if(check === true){
+        res.status(200).send(data)
+      } else {
+        res.status(200).send([])
+      }
+    })
+    .catch(err=>console.log(err))
+  })
+  .catch(err => console.log(err))
+}
 
 exports.update=(req,res)=>{
   console.log('in update', req.body)

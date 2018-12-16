@@ -13,9 +13,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: cookie.get('logCheck'),
+      page: cookie.get('pageCheck') || "Home",
       db: [],
-      loggedIn: false,
+      loggedIn: cookie.get('logCheck') || false,
       currentUser: {},
       favorite:[]
     };
@@ -32,6 +32,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    //console.log('cookie', JSON.parse(cookie.get('user')))
     this.checkPage();
     axios
       .get("/user")
@@ -47,10 +48,9 @@ class App extends React.Component {
   }
 
   checkPage() {
-    if(cookie.get('logCheck') === undefined){
-      cookie.set('logCheck', "Home")
+    if(cookie.get('pageCheck') === undefined){
+      cookie.set('pageCheck', "Home")
     }
-
     if (this.state.page === "Home") {
       return <Home new={this.newUser} old={this.existingUser}/>;
     }
@@ -94,8 +94,9 @@ class App extends React.Component {
       loggedIn: true,
       currentUser: user
     })
-    cookie.set('logCheck', this.state.page);
+    cookie.set('pageCheck', this.state.page);
     cookie.set('user', this.state.currentUser);
+    cookie.set('logCheck', this.state.loggedIn)
     this.checkPage();
   }
 
@@ -104,8 +105,9 @@ class App extends React.Component {
       page: "Home",
       loggedIn: false,
     })
-    cookie.remove('logCheck');
+    cookie.remove('pageCheck');
     cookie.remove('user');
+    cookie.remove('logCheck');
   }
 
   handleAbout(){

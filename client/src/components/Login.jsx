@@ -33,10 +33,11 @@ class Login extends React.Component{
     axios
     .post("/check", data)
     .then(response => {
+      console.log(response.data[0])
       if(response.data.length === 0){
         alert('incorrect username or password, please try again')
       }
-      if(response.data[0].email === email && response.data[0].password === password){
+      if(response.data[0].email === email){
         this.props.login(response.data[0]);
       }
     })
