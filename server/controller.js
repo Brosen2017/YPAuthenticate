@@ -28,19 +28,6 @@ exports.post = (req, res) => {
     })
 };
 
-// exports.check=(req,res)=>{
-//   let query = req.body
-
-//   db.findAll({
-//     where:{email: query.email, 
-//     password: query.password}
-//   })
-//   .then(data =>{
-//     console.log(data)
-//     res.status(201).send(data)
-//   })
-//   .catch(err => console.log(err))
-// }
 
 exports.check=(req,res)=>{
   let query = req.body
@@ -79,4 +66,17 @@ exports.update=(req,res)=>{
     res.status(200).send(data)
   })
   .catch(err=>console.log(err))
+}
+
+exports.getUpdated=(req,res)=>{
+  // console.log('in getUpdated!', JSON.parse(req.query.data))
+  let user = JSON.parse(req.query.data)
+  console.log('in getUpdated!', user.user.email)
+  db.findAll({
+    where:{email: user.user.email}
+  })
+    .then(data => {
+      res.status(200).send(data);
+    })
+    .catch(err => console.error(err))
 }

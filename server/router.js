@@ -9,6 +9,7 @@ router
   router
   .route("/check")
   .post(controller.check)
+  .get(controller.getUpdated)
 
   router
   .route("/update")
