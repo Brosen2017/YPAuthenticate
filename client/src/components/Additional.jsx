@@ -76,7 +76,7 @@ class Additional extends React.Component {
 
   render() {
     return (
-      <form>
+      <div>
         <div>
           <div className={styles.header}>
           <h1 className={styles.text}>Tell us a little more about yourself</h1>
@@ -99,14 +99,9 @@ class Additional extends React.Component {
         <div>
           <button className={styles.button} type="button" onClick={()=>{this.handleSubmit()}}>Submit</button>
           <button className={styles.button}
-            onClick={() => {
-              this.props.home();
-            }}
-          >
-            Home
-          </button>
+            onClick={() => {this.props.home()}}>Home</button>
         </div>
-      </form>
+      </div>
     );
   }
 }
