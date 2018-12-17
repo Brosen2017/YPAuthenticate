@@ -14,5 +14,6 @@ router
   router
   .route("/update")
   .patch(controller.update)
+  .get(controller.search)
 
 module.exports = router;
