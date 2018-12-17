@@ -80,3 +80,14 @@ exports.getUpdated=(req,res)=>{
     })
     .catch(err => console.error(err))
 }
+
+exports.search=(req,res)=>{
+  console.log('hi from search!', req.query.company)
+  db.findAll({
+      where:{company: req.query.company}
+  })
+  .then(data=>{
+    res.status(200).send(data)
+  })
+  .catch(err=>console.log(err))
+}

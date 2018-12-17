@@ -23,6 +23,7 @@ class App extends React.Component {
           return cookie.get("user");
         }
       })(),
+      search:'',
       fav: []
     };
     this.checkPage = this.checkPage.bind(this);
@@ -34,7 +35,10 @@ class App extends React.Component {
     this.handleCompanies = this.handleCompanies.bind(this);
     this.handleHomePage = this.handleHomePage.bind(this);
     this.handleProfile = this.handleProfile.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
+    this.handleList = this.handleList.bind(this);
     this.handleFavorite = this.handleFavorite.bind(this);
+    this.handleEnter = this.handleEnter.bind(this);
   }
 
   componentDidMount() {
@@ -94,11 +98,7 @@ class App extends React.Component {
     }
     if (this.state.page === "Companies") {
       return (
-        <List
-          data={this.state.db}
-          home={this.handleHomePage}
-          fav={this.handleFavorite}
-        />
+        <List search={this.handleSearch} enter={this.handleEnter} list={this.handleList} data={this.state.db} home={this.handleHomePage} fav={this.handleFavorite}/>
       );
     }
   }
@@ -118,16 +118,6 @@ class App extends React.Component {
   }
 
   handleLogin(user) {
-    if (!user) {
-      console.log("is this working?", this.state.currentUser);
-      // axios
-      // .get("/update")
-      // .then((res)=>{
-      //   console.log(res.data)
-      // })
-      // .catch(err=>console.log(err))
-
-    }
     this.setState({
       page: "Main",
       loggedIn: true,
@@ -179,6 +169,41 @@ class App extends React.Component {
       // loggedIn: false
     });
     this.checkPage();
+  }
+
+  handleList(){
+    axios
+    .get('/user')
+    .then((res)=>{
+      console.log(res.data)
+      this.setState({
+        db: res.data
+      })
+    })
+    .catch(err=>console.log(err))
+  }
+
+  handleSearch(e){
+    this.setState({
+      search: e.target.value
+    });
+  }
+
+  handleEnter(e){
+    if(e.key === 'Enter'){
+      console.log('enter', this.state.search)
+      let company = this.state.search;
+      axios
+      .get('/update', {params:{company}})
+      .then((res)=>{
+        console.log(res.data)
+        this.setState({
+          db: res.data
+        })
+      })
+      .catch(err=>console.log(err))
+    }
+
   }
 
   handleFavorite(company) {
