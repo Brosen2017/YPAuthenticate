@@ -1,14 +1,18 @@
 import React from 'react';
+import styles from '../styles/Main.css';
 
 let Main = props =>(
   <div>
     {console.log('in main', props.state)}
-    <h1>Welcome to the main page!</h1>
-
-    <button onClick={()=>{props.about()}}>Additional Info</button>
-    <button onClick={()=>{props.profile()}}>My Profile</button>
-    <button onClick={()=>{props.company()}}>Companies</button>
-    <button onClick={()=>props.logout()}>Log out</button>
+    <div className={styles.header}>
+    <h1 className={styles.text}>Welcome to the main page!</h1>
+    </div>
+    <div>
+    <button className={styles.button} onClick={()=>{props.about()}}>Additional Info</button>
+    <button className={styles.button} onClick={()=>{props.profile()}}>My Profile</button>
+    <button className={styles.button} onClick={()=>{props.company()}}>Companies</button>
+    <button className={styles.button} onClick={()=>props.logout()}>Log out</button>
+    </div>
   </div>
 )
 

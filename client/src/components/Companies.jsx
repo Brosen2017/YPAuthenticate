@@ -1,26 +1,34 @@
 import React from 'react';
+import styles from '../styles/Companies.css';
 
 let Companies = props =>(
   <ul>
-    <li>
-      <b>Name: </b>
+    <div className={styles.form}>
+      <b className={styles.keys}>Name: </b>
+      <span className={styles.value}>
       {props.company.firstname} {props.company.lastname}
-      <div>
-        <p>
-        <b>Company: </b>
+      </span>
+      
+        <div>
+        <b className={styles.keys}>Company: </b>
+        <span className={styles.value}>
         {props.company.company}
-        </p>
+        </span>
+        </div>
         
-        <b>Company Website: </b>
+        <b className={styles.keys}>Company Website: </b>
+        <span className={styles.value}>
         {props.company.website}
-
-        <button onClick={()=>props.fav(props.company)}>Favorite</button>
+        </span>
 
         <div>
-          <img src={props.company.photo}></img>
+          <img className={styles.photo} src={props.company.photo}></img>
+        </div>
+        <div>
+        <button className={styles.button} onClick={()=>props.fav(props.company)}>Favorite</button>
         </div>
       </div>
-    </li>
+    
   </ul>
 )
 

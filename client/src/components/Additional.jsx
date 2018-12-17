@@ -81,30 +81,27 @@ class Additional extends React.Component {
     return (
       <form>
         <div>
-          <h1>Tell us a little more about yourself</h1>
+          <div className={styles.header}>
+          <h1 className={styles.text}>Tell us a little more about yourself</h1>
+          </div>
           <hr />
-
-          <b>Company Name: </b>
+          <div className={styles.form}>
           <input type="text" placeholder="Company Name" onChange={this.handleCompany} className={styles.input}/>
 
-          <b>Company Website: </b>
           <input type="text" placeholder="Company Website"  onChange={this.handleWebsite} className={styles.input}/>
 
-          <b>Photo: </b>
           <input type="text" placeholder="Insert imageUrl here" onChange={this.handlePhoto} className={styles.input}/>
 
-          <b>Address: </b>
           <input type="text" placeholder="Address" onChange={this.handleAddress} className={styles.input}/>
 
-          <b>City: </b>
           <input type="text" placeholder="City" onChange={this.handleCity} className={styles.input}/>
 
-          <b>State: </b>
           <StateList handle={this.handleState}/>
+          </div>
         </div>
         <div>
-          <button type="button" onClick={()=>{this.handleSubmit()}}>Submit</button>
-          <button 
+          <button className={styles.button} type="button" onClick={()=>{this.handleSubmit()}}>Submit</button>
+          <button className={styles.button}
             onClick={() => {
               this.props.home();
             }}
