@@ -22,10 +22,8 @@ class App extends React.Component {
           return JSON.parse(cookie.get("user"));
         } else {
           return cookie.get("user");
-        }
-      })(),
-      search:'',
-      fav: []
+        }})(),
+      search:''
     };
     this.checkPage = this.checkPage.bind(this);
     this.newUser = this.newUser.bind(this);
@@ -44,8 +42,6 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    //console.log('cookie', JSON.parse(cookie.get('user')))
-    //this.handleLogin()
     this.checkPage();
     axios
       .get("/user")
@@ -182,7 +178,6 @@ class App extends React.Component {
 
   handleEnter(e){
     if(e.key === 'Enter'){
-      console.log('enter', this.state.search)
       let company = this.state.search;
       axios
       .get('/update', {params:{company}})
@@ -204,11 +199,10 @@ class App extends React.Component {
   }
 
   handleFavorite(company) {
-    // console.log('favorite', company)
-    // this.setState({
-    //   favorite: this.state.favorite.concat(company)
-    // })
-    // console.log('favorite', this.state)
+    //Due to time constraints I was unable to add this extra feature
+    //This would allow the user to click on individual companies and favorite them
+    //Upon favoriting them, I would update the user database to include their favorite companies 
+    //You would be able to view favorite companies in User Profile.
   }
 
   render() {

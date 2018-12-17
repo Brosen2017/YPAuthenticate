@@ -38,11 +38,8 @@ exports.check=(req,res)=>{
       console.log('hash check', check)
       if(check === true){
         res.status(200).send(data)
-      } else {
-        res.status(200).send([])
       }
     })
-    .catch(err=>console.log(err))
   })
   .catch(err => console.log(err))
 }

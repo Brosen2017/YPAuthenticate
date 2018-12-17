@@ -31,9 +31,11 @@ class Login extends React.Component{
     let data = this.state;
     let email = this.state.email;
     let password = this.state.password;
+    console.log('data in login', data)
     axios
     .post("/check", data)
     .then(response => {
+      console.log('submitted!', response.data[0])
       if(response.data.length === 0){
         return alert('incorrect username or password, please try again')
       }
@@ -49,8 +51,7 @@ class Login extends React.Component{
 
 render(){
   return(
-
-  <form>
+  <div>
     <div className={styles.header}>
     <h1 className={styles.text}>Sign in</h1>
     <p>Please sign in below.</p>
@@ -61,10 +62,10 @@ render(){
       <input type="password" className={styles.input} placeholder="Enter Password" name="password" required onChange={this.handlePWD}/>
       </div>
       <div>
-      <button className={styles.button} type="button" onClick={()=>{this.handleSubmit()}}>Sign in</button>
+      <button className={styles.button} onClick={()=>{this.handleSubmit()}}>Sign in</button>
       <button className={styles.button} onClick={()=>this.props.logout()}>Cancel</button>
       </div>
-  </form>
+  </div>
   )
 }
 }

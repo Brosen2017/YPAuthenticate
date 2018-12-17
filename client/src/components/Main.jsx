@@ -3,7 +3,6 @@ import styles from '../styles/Main.css';
 
 let Main = props =>(
   <div>
-    {console.log('in main', props.state)}
     <div className={styles.header}>
     <h1 className={styles.text}>Welcome to the main page!</h1>
     </div>

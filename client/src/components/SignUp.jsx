@@ -59,9 +59,8 @@ class SignUp extends React.Component{
     })
   }
 
-  handleSubmit(e){
+  handleSubmit(){
     let user = this.state
-     console.log(this.state)
     if(this.state.password !== this.state.rePassword){
       alert("Password is not the same!")
     }

@@ -24,9 +24,9 @@ let Companies = props =>(
         <div>
           <img className={styles.photo} src={props.company.photo}></img>
         </div>
-        <div>
+        {/* <div>
         <button className={styles.button} onClick={()=>props.fav(props.company)}>Favorite</button>
-        </div>
+        </div> */}
       </div>
     
   </ul>

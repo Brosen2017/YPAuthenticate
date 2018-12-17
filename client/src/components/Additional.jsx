@@ -67,7 +67,6 @@ class Additional extends React.Component {
       axios
       .get('/check' , {params:{data}})
       .then((response)=>{
-        console.log('in additional', response.data[0])
         this.props.login(response.data[0])
       })
       .catch(err=>console.log(err))
