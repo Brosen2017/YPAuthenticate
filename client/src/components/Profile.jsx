@@ -56,6 +56,7 @@ let Profile = props =>(
     </div>
     <div>
       <button className={styles.button} onClick={()=>props.home()}>Home</button>
+      <button className={styles.button} onClick={props.update}>Change Password</button>
     </div>
     </div>
   </div>

@@ -91,3 +91,30 @@ exports.search=(req,res)=>{
   })
   .catch(err=>console.log(err))
 }
+
+exports.pwd=(req,res)=>{
+  console.log('hi from pwd!', req.body)
+  let query = req.body
+
+  db.findAll({
+    where:{email: query.user.email}
+  })
+  .then(data=>{
+    bcrypt.compare(query.oldPWD, data[0].password, function(err, check) {
+      console.log('in hash', check)
+      if(check === true){
+        bcrypt.hash(query.newPWD, 5, function(err, hash) { 
+        db.update({
+          password: hash
+        }, {where: {email: query.user.email}})
+        .then((data)=>{
+          res.status(200).send(data)
+        })
+        .catch(err=>console.log(err))
+        })
+      }
+    })
+  })
+  .catch(err=>console.log(err))
+
+}
