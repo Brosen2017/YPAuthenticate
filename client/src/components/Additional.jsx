@@ -60,12 +60,10 @@ class Additional extends React.Component {
   }
 
   handleSubmit(){
-    console.log('About state', this.state)
     let data = this.state
     axios
     .patch('/update', data)
     .then((res)=>{
-      console.log('in additional', res)
       axios
       .get('/check' , {params:{data}})
       .then((response)=>{

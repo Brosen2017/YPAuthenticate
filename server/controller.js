@@ -3,7 +3,6 @@ const bcrypt = require("bcrypt");
 const axios = require("axios");
 
 exports.get = (req, res) => {
-  console.log("in get!");
   db.findAll({})
     .then(data => {
       res.status(200).send(data);
@@ -12,7 +11,6 @@ exports.get = (req, res) => {
 };
 
 exports.post = (req, res) => {
-  console.log("in post!", req.body.user);
   bcrypt.hash(req.body.user.password, 5, function(err, hash) {
     db.create({
       firstname: req.body.user.firstName,
@@ -31,14 +29,13 @@ exports.post = (req, res) => {
 
 exports.check=(req,res)=>{
   let query = req.body
-
   db.findAll({
     where:{email: query.email}
   })
   .then(data =>{
     console.log(data[0].password)
     bcrypt.compare(query.password, data[0].password, function(err, check) {
-      console.log('in hash', check)
+      console.log('hash check', check)
       if(check === true){
         res.status(200).send(data)
       } else {
@@ -51,7 +48,6 @@ exports.check=(req,res)=>{
 }
 
 exports.update=(req,res)=>{
-  console.log('in update', req.body)
 
   db.update(
     {company: req.body.company,
@@ -69,9 +65,7 @@ exports.update=(req,res)=>{
 }
 
 exports.getUpdated=(req,res)=>{
-  // console.log('in getUpdated!', JSON.parse(req.query.data))
   let user = JSON.parse(req.query.data)
-  console.log('in getUpdated!', user.user.email)
   db.findAll({
     where:{email: user.user.email}
   })
@@ -82,7 +76,6 @@ exports.getUpdated=(req,res)=>{
 }
 
 exports.search=(req,res)=>{
-  console.log('hi from search!', req.query.company)
   db.findAll({
       where:{company: req.query.company}
   })
@@ -93,15 +86,13 @@ exports.search=(req,res)=>{
 }
 
 exports.pwd=(req,res)=>{
-  console.log('hi from pwd!', req.body)
   let query = req.body
-
   db.findAll({
     where:{email: query.user.email}
   })
   .then(data=>{
     bcrypt.compare(query.oldPWD, data[0].password, function(err, check) {
-      console.log('in hash', check)
+      console.log('hash check', check)
       if(check === true){
         bcrypt.hash(query.newPWD, 5, function(err, hash) { 
         db.update({
