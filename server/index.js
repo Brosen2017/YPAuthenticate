@@ -4,8 +4,7 @@ const path = require("path");
 const cors = require('cors');
 const router = require("./router.js");
 const app = express();
-//const db = require('../database/model')
-//const Axios = require('axios');
+
 
 const PORT = 5000;
 

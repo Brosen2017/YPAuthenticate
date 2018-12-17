@@ -31,11 +31,9 @@ class Login extends React.Component{
     let data = this.state;
     let email = this.state.email;
     let password = this.state.password;
-    console.log('data in login', data)
     axios
     .post("/check", data)
     .then(response => {
-      console.log('submitted!', response.data[0])
       if(response.data.length === 0){
         return alert('incorrect username or password, please try again')
       }
@@ -43,9 +41,7 @@ class Login extends React.Component{
         this.props.login(response.data[0]);
       }
     })
-    .catch(err => {
-      console.log(err);
-    });
+    .catch(err => console.log(err));
   }
   
 

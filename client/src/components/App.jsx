@@ -46,7 +46,6 @@ class App extends React.Component {
     axios
       .get("/user")
       .then(response => {
-        console.log("this is the response", response.data);
         this.setState({
           db: response.data
         });
@@ -85,9 +84,7 @@ class App extends React.Component {
       return <Additional home={this.handleHomePage} user={this.state.currentUser} login={this.handleLogin}/>;
     }
     if (this.state.page === "Companies") {
-      return (
-        <List search={this.handleSearch} enter={this.handleEnter} list={this.handleList} data={this.state.db} home={this.handleHomePage} fav={this.handleFavorite}/>
-      );
+      return <List search={this.handleSearch} enter={this.handleEnter} list={this.handleList} data={this.state.db} home={this.handleHomePage} fav={this.handleFavorite}/>
     }
     if(this.state.page === "Update"){
       return <Update user={this.state.currentUser} login={this.handleLogin} cancel={this.handleHomePage}/>
@@ -162,7 +159,6 @@ class App extends React.Component {
     axios
     .get('/user')
     .then((res)=>{
-      console.log(res.data)
       this.setState({
         db: res.data
       })
@@ -182,7 +178,6 @@ class App extends React.Component {
       axios
       .get('/update', {params:{company}})
       .then((res)=>{
-        console.log(res.data)
         this.setState({
           db: res.data
         })
