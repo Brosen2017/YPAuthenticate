@@ -16,4 +16,8 @@ router
   .patch(controller.update)
   .get(controller.search)
 
+  router
+  .route("/pwd")
+  .patch(controller.pwd)
+
 module.exports = router;

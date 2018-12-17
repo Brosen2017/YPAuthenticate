@@ -7,6 +7,7 @@ import Main from "./Main.jsx";
 import Additional from "./Additional.jsx";
 import List from "./List.jsx";
 import Profile from "./Profile.jsx";
+import Update from './Update.jsx';
 import cookie from "js-cookie";
 
 class App extends React.Component {
@@ -39,6 +40,7 @@ class App extends React.Component {
     this.handleList = this.handleList.bind(this);
     this.handleFavorite = this.handleFavorite.bind(this);
     this.handleEnter = this.handleEnter.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
   }
 
   componentDidMount() {
@@ -78,20 +80,10 @@ class App extends React.Component {
       return <Login data={this.state.db} login={this.handleLogin} logout={this.handleLogout}/>;
     }
     if (this.state.page === "Main") {
-      return (
-        <Main
-          state={this.state}
-          about={this.handleAbout}
-          company={this.handleCompanies}
-          profile={this.handleProfile}
-          logout={this.handleLogout}
-        />
-      );
+      return <Main state={this.state} about={this.handleAbout} company={this.handleCompanies} profile={this.handleProfile} logout={this.handleLogout} />
     }
     if (this.state.page === "Profile") {
-      return (
-        <Profile home={this.handleHomePage} user={this.state.currentUser} />
-      );
+      return <Profile home={this.handleHomePage} update={this.handleUpdate} user={this.state.currentUser} />
     }
     if (this.state.page === "About") {
       return <Additional home={this.handleHomePage} user={this.state.currentUser} login={this.handleLogin}/>;
@@ -100,6 +92,9 @@ class App extends React.Component {
       return (
         <List search={this.handleSearch} enter={this.handleEnter} list={this.handleList} data={this.state.db} home={this.handleHomePage} fav={this.handleFavorite}/>
       );
+    }
+    if(this.state.page === "Update"){
+      return <Update user={this.state.currentUser} login={this.handleLogin}/>
     }
   }
 
@@ -142,7 +137,6 @@ class App extends React.Component {
   handleAbout() {
     this.setState({
       page: "About"
-      // loggedIn: false
     });
     this.checkPage();
   }
@@ -150,7 +144,6 @@ class App extends React.Component {
   handleCompanies() {
     this.setState({
       page: "Companies"
-      // loggedIn: false
     });
     this.checkPage();
   }
@@ -158,7 +151,6 @@ class App extends React.Component {
   handleHomePage() {
     this.setState({
       page: "Main"
-      // loggedIn: true
     });
     this.checkPage();
   }
@@ -166,7 +158,6 @@ class App extends React.Component {
   handleProfile() {
     this.setState({
       page: "Profile"
-      // loggedIn: false
     });
     this.checkPage();
   }
@@ -203,7 +194,13 @@ class App extends React.Component {
       })
       .catch(err=>console.log(err))
     }
+  }
 
+  handleUpdate(){
+    this.setState({
+      page: "Update"
+    })
+    this.checkPage();
   }
 
   handleFavorite(company) {

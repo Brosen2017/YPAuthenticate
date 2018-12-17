@@ -1,0 +1,20 @@
+.header{
+    display: flex;
+    height: 150px;
+    padding: 10px;
+    background:black;
+  }
+  
+  .text{
+    margin-top:15px;
+    font-size: 80px;
+    font-family: 'Patua One', cursive;
+    color:white;
+    text-decoration: underline #ffd400;
+  }
+
+  .form{
+      display: flex;
+      flex-direction: column;
+      width:41.6%
+  }
