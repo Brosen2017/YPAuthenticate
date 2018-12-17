@@ -94,7 +94,7 @@ class App extends React.Component {
       );
     }
     if(this.state.page === "Update"){
-      return <Update user={this.state.currentUser} login={this.handleLogin}/>
+      return <Update user={this.state.currentUser} login={this.handleLogin} cancel={this.handleHomePage}/>
     }
   }
 

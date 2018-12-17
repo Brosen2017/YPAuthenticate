@@ -77,15 +77,16 @@ class SignUp extends React.Component{
 
 render(){
   return (
-    <div className={styles.boxPlacement}>
-    <div className={styles.box}>
-  <form className={styles.form}>
+    <div>
+    <div>
+  <form >
     <div>
       <div className={styles.header}>
       <h1 className={styles.title}>Sign Up</h1>
       <p className={styles.subHeader}>Please fill out the form below to create an account.</p>
       </div>
       <hr />
+      <div className={styles.form}>
       <div className={styles.nameInput}>
       <input type="text" placeholder="First Name" name="firstname" required onChange={this.handleFName} className={styles.name} id={styles.firstName}/>
 
@@ -119,6 +120,7 @@ render(){
       <div className={styles.buttonBox}>
         <button type="button" className={styles.button} id={styles.cancel} onClick={()=>this.props.logout()}>Cancel</button>
         <button type="submit" className={styles.button} id={styles.signUp} onClick={this.handleSubmit}>Sign Up</button>
+      </div>
       </div>
     </div>
   </form>

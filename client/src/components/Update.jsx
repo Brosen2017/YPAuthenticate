@@ -36,7 +36,6 @@ class Update extends React.Component{
   }
 
   handleSubmit(){
-      console.log('update', this.state)
       let data = this.state
       if(this.state.newPWD !== this.state.rePWD){
           alert('Warning password does not match, please try again')
@@ -44,14 +43,13 @@ class Update extends React.Component{
       axios
       .patch('/pwd', data)
       .then((res)=>{
-          console.log(res)
           axios
           .get('/check' , {params:{data}})
           .then((response)=>{
             console.log('in additional', response.data[0])
             this.props.login(response.data[0])
           })
-          .catch(err=>console.log(err))
+          .catch(err=>{console.log(err)})
       })
       .catch(err=>console.log(err))
   }
@@ -63,11 +61,12 @@ class Update extends React.Component{
             <h1 className={styles.text}>Change Password</h1>
             </div>
             <div className={styles.form}>
-            <input onChange={this.handlePWD} type="password" placeholder="Enter Old Password"></input>
-            <input onChange={this.handleNewPWD} type="password" placeholder="Enter New Password"></input>
-            <input onChange={this.handleRePWD} type="password" placeholder="Enter Password Again"></input>
+            <input className={styles.input} onChange={this.handlePWD} type="password" placeholder="Enter Old Password" required></input>
+            <input className={styles.input} onChange={this.handleNewPWD} type="password" placeholder="Enter New Password" required></input>
+            <input className={styles.input} onChange={this.handleRePWD} type="password" placeholder="Enter Password Again" required></input>
             </div>
-            <button type="submit" onClick={this.handleSubmit}>Submit</button>
+            <button className={styles.button} onClick={this.handleSubmit}>Submit</button>
+            <button className={styles.button} onClick={this.props.cancel}>Cancel</button>
         </div>
       )
   }

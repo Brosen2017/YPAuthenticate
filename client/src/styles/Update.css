@@ -18,3 +18,29 @@
       flex-direction: column;
       width:41.6%
   }
+
+  .button{
+    background-color:#ffd400;
+    font-family: 'Patua One', cursive;
+    color: black;
+    font-size:20px;
+    font-weight: bold;
+    padding: 15px 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 5%;
+    cursor: pointer;
+    width: 15.2%;
+    opacity: 0.9;
+  }
+
+  .input{
+    width: 70%;
+    padding: 20px 10px 20px 10px;
+    margin-top:5px;
+    margin-bottom:5px;
+    margin-right: 10px;
+    border: none;
+    background:white;
+    border-radius: 2%;
+  }
