@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import styles from '../styles/Login.css';
 
 class Login extends React.Component{
   constructor(props){
@@ -50,21 +51,18 @@ render(){
   return(
 
   <form>
-    <h1>Sign in</h1>
+    <div className={styles.header}>
+    <h1 className={styles.text}>Sign in</h1>
     <p>Please sign in below.</p>
-    <hr/>
+    </div>
+      <div className={styles.form}>
+      <input type="text" className={styles.input} placeholder="Enter Email" name="email" required onChange={this.handleEmail}/>
 
-          <label>
-        <b>Email</b>
-      </label>
-      <input type="text" placeholder="Enter Email" name="email" required onChange={this.handleEmail}/>
-      <label>
-        <b>Password</b>
-      </label>
-      <input type="password" placeholder="Enter Password" name="password" required onChange={this.handlePWD}/>
+      <input type="password" className={styles.input} placeholder="Enter Password" name="password" required onChange={this.handlePWD}/>
+      </div>
       <div>
-      <button type="button" onClick={()=>{this.handleSubmit()}}>Sign in</button>
-      <button onClick={()=>this.props.logout()}>Cancel</button>
+      <button className={styles.button} type="button" onClick={()=>{this.handleSubmit()}}>Sign in</button>
+      <button className={styles.button} onClick={()=>this.props.logout()}>Cancel</button>
       </div>
   </form>
   )
