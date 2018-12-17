@@ -81,8 +81,10 @@ render(){
     <div className={styles.box}>
   <form className={styles.form}>
     <div>
-      <h1 className={styles.header}>Sign Up</h1>
+      <div className={styles.header}>
+      <h1 className={styles.title}>Sign Up</h1>
       <p className={styles.subHeader}>Please fill out the form below to create an account.</p>
+      </div>
       <hr />
       <div className={styles.nameInput}>
       <input type="text" placeholder="First Name" name="firstname" required onChange={this.handleFName} className={styles.name} id={styles.firstName}/>

@@ -1,35 +1,44 @@
 .header{
   display:flex;
   justify-content: center;
-  font-family: 'Helvetica';
+  flex-direction:column;
+  margin-top: -10.2px;
+  margin-bottom: -8px;
+  margin-left:-0.5px;
+  background-color: #ffd400;
+}
+
+.title{
+  margin-left: 120px;
+  font-family: 'Patua One', cursive;
   font-weight:bold;
 }
 
 .subHeader{
-  display:flex;
   justify-content: center;
-  font-family: 'Helvetica';
+  font-family: 'Patua One', cursive;
   font-size:10px;
-  margin-right:10px;
-  margin-left:10px;
+  margin-left:65px;
 }
+
+
 
 .input{
   width: 85%;
-  padding: 10px 10px 20px 10px;
+  padding: 15px 10px 15px 10px;
   margin-top:5px;
   margin-bottom:5px;
   border: none;
-  background: #f1f1f1;
+  background: white;
 }
 
 .name{
   width: 38%;
-  padding: 10px 10px 20px 10px;
+  padding: 15px 10px 15px 10px;
   margin-top:5px;
   margin-bottom:5px;
   border: none;
-  background: #f1f1f1;
+  background: white;
 }
 
 #firstName{
@@ -56,7 +65,7 @@
 }
 
 .box{
-  background-color: #ccccff;
+
   border: 1px solid #000;
   max-width: 500px;
   /* padding: 10px */
@@ -92,6 +101,7 @@
 .disclaimer{
   display: flex;
   justify-content: center;
+  font-family: 'Patua One', cursive;
   font-size: 10px
 }
 
