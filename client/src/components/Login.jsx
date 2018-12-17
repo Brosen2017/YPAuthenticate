@@ -39,9 +39,6 @@ class Login extends React.Component{
       if(response.data[0].email === email){
         this.props.login(response.data[0]);
       }
-      // if(!response){
-      // return alert('email or password not found, please sign up to become a member')
-      // }
     })
     .catch(err => {
       console.log(err);

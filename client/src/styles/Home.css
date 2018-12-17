@@ -1,10 +1,12 @@
 .header{
   display: flex;
-  justify-content: space-around;
-  height: 60px;
-  font-size: 40px;
-  font-family: 'Helvetica';
-  color: #000000;
-  padding: 1em;
+  height: 150px;
+  padding: 10px;
   background: #f9ea1fde;
+}
+
+.text{
+  margin-top:15px;
+  font-size: 100px;
+  font-family: 'Patua One', cursive;
 }

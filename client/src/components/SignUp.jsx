@@ -1,5 +1,6 @@
 import React from "react";
 import axios from 'axios';
+import styles from '../styles/SignUp.css';
 
 
 class SignUp extends React.Component{
@@ -76,61 +77,51 @@ class SignUp extends React.Component{
 
 render(){
   return (
-  <form>
+    <div className={styles.boxPlacement}>
+    <div className={styles.box}>
+  <form className={styles.form}>
     <div>
-      <h1>Sign Up</h1>
-      <p>Please fill in this form to create an account.</p>
+      <h1 className={styles.header}>Sign Up</h1>
+      <p className={styles.subHeader}>Please fill out the form below to create an account.</p>
       <hr />
+      <div className={styles.nameInput}>
+      <input type="text" placeholder="First Name" name="firstname" required onChange={this.handleFName} className={styles.name} id={styles.firstName}/>
 
-      <label htmlFor="firstname">
-        <b>First name</b>
-      </label>
-      <input type="text" placeholder="First Name" name="firstname" required onChange={this.handleFName}/>
-
-      <label htmlFor="lastname">
-        <b>Last name</b>
-      </label>
-      <input type="text" placeholder="Last Name" name="lastname" required onChange={this.handleLName}/>
-
-      <label htmlFor="email">
-        <b>Email</b>
-      </label>
-      <input type="text" placeholder="Enter Email" name="email" required onChange={this.handleEmail}/>
-
-      <label htmlFor="psw">
-        <b>Password</b>
-      </label>
-      <input type="password" placeholder="Enter Password" name="psw" required onChange={this.handlePWD}/>
-
-      <label htmlFor="psw-repeat">
-        <b>Password Confirmation</b>
-      </label>
+      <input type="text" placeholder="Last Name" name="lastname" required onChange={this.handleLName} className={styles.name} id={styles.lastName}/>
+      </div>
+      <div className={styles.formInputs}>
+      <input type="text" placeholder="Enter Email" name="email" required onChange={this.handleEmail} className={styles.input}/>
+      </div>
+      <div className={styles.formInputs}>
+      <input type="password" placeholder="Enter Password" name="psw" required onChange={this.handlePWD} className={styles.input}/>
+      </div>
+      <div className={styles.formInputs}>
       <input
         type="password"
         placeholder="Retype Password"
         name="psw-repeat"
         required
-        onChange={this.handlePWDCheck}/>
-
-      <label htmlFor="zipcode">
-        <b>Zipcode</b>
-      </label>
-      <input type="text" placeholder="Enter Zipcode" name="zipcode" required onChange={this.handleZip}/>
-
-      <p>
-        By creating an account you agree to our{" "}
+        onChange={this.handlePWDCheck} className={styles.input}/>
+      </div>
+      <div className={styles.formInputs}>
+      <input type="text" placeholder="Enter Zipcode" name="zipcode" required onChange={this.handleZip} className={styles.input}/>
+      </div>
+      <p className={styles.disclaimer}>
+        By creating an account you agree to our {" "}
         <a href="#" >
-          Terms & Privacy
+          Terms & Services
         </a>
         .
       </p>
 
-      <div>
-        <button type="button" onClick={()=>this.props.logout()}>Cancel</button>
-        <button type="submit" onClick={this.handleSubmit}>Sign Up</button>
+      <div className={styles.buttonBox}>
+        <button type="button" className={styles.button} id={styles.cancel} onClick={()=>this.props.logout()}>Cancel</button>
+        <button type="submit" className={styles.button} id={styles.signUp} onClick={this.handleSubmit}>Sign Up</button>
       </div>
     </div>
   </form>
+  </div>
+  </div>
 );
 }
 }
