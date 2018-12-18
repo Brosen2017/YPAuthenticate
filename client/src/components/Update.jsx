@@ -65,7 +65,7 @@ class Update extends React.Component{
             <input className={styles.input} onChange={this.handleRePWD} type="password" placeholder="Enter Password Again" required></input>
             </div>
             <button className={styles.button} onClick={this.handleSubmit}>Submit</button>
-            <button className={styles.button} onClick={this.props.cancel}>Cancel</button>
+            <button className={styles.button} onClick={()=>{this.props.condition("Profile")}}>Cancel</button>
         </div>
       )
   }

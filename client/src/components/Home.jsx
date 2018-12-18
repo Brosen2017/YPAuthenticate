@@ -8,8 +8,8 @@ let Home = props => (
     </div>
     <div>
     <div className={styles.buttonBox}>
-    <button className={styles.button} onClick={()=>{props.old()}}>Login</button>  
-    <button className={styles.button} onClick={()=>{props.new()}}>Signup</button>  
+    <button className={styles.button} onClick={()=>{props.condition("Login")}}>Login</button>  
+    <button className={styles.button} onClick={()=>{props.condition("Signup")}}>Signup</button>  
     </div>
     </div>
   </div>
