@@ -26,19 +26,12 @@ class App extends React.Component {
       search:''
     };
     this.checkPage = this.checkPage.bind(this);
-    this.newUser = this.newUser.bind(this);
-    this.existingUser = this.existingUser.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
-    this.handleAbout = this.handleAbout.bind(this);
-    this.handleCompanies = this.handleCompanies.bind(this);
-    this.handleHomePage = this.handleHomePage.bind(this);
-    this.handleProfile = this.handleProfile.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.handleList = this.handleList.bind(this);
-    this.handleFavorite = this.handleFavorite.bind(this);
     this.handleEnter = this.handleEnter.bind(this);
-    this.handleUpdate = this.handleUpdate.bind(this);
+    this.handleCondition = this.handleCondition.bind(this);
   }
 
   componentDidMount() {
@@ -66,7 +59,7 @@ class App extends React.Component {
       this.handleLogin();
     }
     if (this.state.page === "Home") {
-      return <Home new={this.newUser} old={this.existingUser} />;
+      return <Home condition={this.handleCondition}/>;
     }
     if (this.state.page === "Signup") {
       return <SignUp logout={this.handleLogout} />;
@@ -75,35 +68,30 @@ class App extends React.Component {
       return <Login data={this.state.db} login={this.handleLogin} logout={this.handleLogout}/>;
     }
     if (this.state.page === "Main") {
-      return <Main state={this.state} about={this.handleAbout} company={this.handleCompanies} profile={this.handleProfile} logout={this.handleLogout} />
+      return <Main state={this.state} condition={this.handleCondition} logout={this.handleLogout} />
     }
     if (this.state.page === "Profile") {
-      return <Profile home={this.handleHomePage} update={this.handleUpdate} user={this.state.currentUser} />
+      return <Profile condition={this.handleCondition} user={this.state.currentUser} />
     }
     if (this.state.page === "About") {
-      return <Additional home={this.handleHomePage} user={this.state.currentUser} login={this.handleLogin}/>;
+      return <Additional condition={this.handleCondition} user={this.state.currentUser} login={this.handleLogin}/>;
     }
     if (this.state.page === "Companies") {
-      return <List search={this.handleSearch} enter={this.handleEnter} list={this.handleList} data={this.state.db} home={this.handleHomePage} fav={this.handleFavorite}/>
+      return <List search={this.handleSearch} enter={this.handleEnter} list={this.handleList} data={this.state.db} condition={this.handleCondition} />
     }
     if(this.state.page === "Update"){
-      return <Update user={this.state.currentUser} login={this.handleLogin} cancel={this.handleHomePage}/>
+      return <Update user={this.state.currentUser} condition={this.handleCondition} login={this.handleLogin} />
     }
   }
 
-  newUser() {
+  handleCondition(page){
+    console.log('condition', page)
     this.setState({
-      page: "Signup"
+      page: page
     });
     this.checkPage();
   }
 
-  existingUser() {
-    this.setState({
-      page: "Login"
-    });
-    this.checkPage();
-  }
 
   handleLogin(user) {
     this.setState({
@@ -127,33 +115,6 @@ class App extends React.Component {
     cookie.remove("logCheck");
   }
 
-  handleAbout() {
-    this.setState({
-      page: "About"
-    });
-    this.checkPage();
-  }
-
-  handleCompanies() {
-    this.setState({
-      page: "Companies"
-    });
-    this.checkPage();
-  }
-
-  handleHomePage() {
-    this.setState({
-      page: "Main"
-    });
-    this.checkPage();
-  }
-
-  handleProfile() {
-    this.setState({
-      page: "Profile"
-    });
-    this.checkPage();
-  }
 
   handleList(){
     axios
@@ -186,12 +147,6 @@ class App extends React.Component {
     }
   }
 
-  handleUpdate(){
-    this.setState({
-      page: "Update"
-    })
-    this.checkPage();
-  }
 
   handleFavorite(company) {
     //Due to time constraints I was unable to add this extra feature

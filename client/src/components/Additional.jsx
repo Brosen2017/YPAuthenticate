@@ -98,8 +98,7 @@ class Additional extends React.Component {
         </div>
         <div>
           <button className={styles.button} type="button" onClick={()=>{this.handleSubmit()}}>Submit</button>
-          <button className={styles.button}
-            onClick={() => {this.props.home()}}>Home</button>
+          <button className={styles.button} onClick={() => {this.props.condition("Main")}}>Home</button>
         </div>
       </div>
     );

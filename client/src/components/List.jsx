@@ -8,7 +8,7 @@ let List = props => (
     <h1 className={styles.text}>Company List</h1>  
     </div>
   
-  <button className={styles.button} onClick={()=>{props.home()}}>Home</button>
+  <button className={styles.button} onClick={()=>{props.condition("Main")}}>Home</button>
   <button className={styles.button} onClick={props.list}>Show All</button>
   <input className={styles.input} onKeyPress={props.enter} onChange={props.search} type="text" placeholder="Search Company"></input>
   <p>These are the current companies we have available in our database!</p>
