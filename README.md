@@ -1,6 +1,6 @@
 # YPtakehome
 
-This product is for the sake of a take home project
+This project is designed to highlight user authentication and login persistance in a light-weight application
 using the following main components:
 -Javascript
 -Node.js(express)
