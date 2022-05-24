@@ -1,4 +1,4 @@
-# YPtakehome
+# YPRemake
 
 This project is designed to highlight user authentication and login persistance in a light-weight application
 using the following main components:
